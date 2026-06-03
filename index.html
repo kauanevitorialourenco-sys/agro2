@@ -1,0 +1,537 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Agrinho Master - FAEP e o Futuro Sustentável</title>
+    <style>
+        /* --- ESTILOS DESIGN MODERNO --- */
+        :root {
+            --primary: #1b5e20;
+            --primary-light: #4caf50;
+            --accent: #ff9800;
+            --bg: #f0f4f1;
+            --card-bg: #ffffff;
+            --text: #2c3e50;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+        }
+
+        body {
+            background-color: var(--bg);
+            color: var(--text);
+            line-height: 1.6;
+        }
+
+        /* --- NAV E HEADER --- */
+        nav {
+            background-color: var(--primary);
+            color: white;
+            padding: 15px 20px;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        nav .logo {
+            font-weight: bold;
+            font-size: 1.4rem;
+            letter-spacing: 1px;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin-left: 20px;
+            font-weight: 500;
+            transition: 0.3s;
+        }
+
+        nav a:hover {
+            color: var(--accent);
+        }
+
+        header {
+            background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.7)), url('https://images.unsplash.com/photo-1500937386664-56d1dfef3854?auto=format&fit=crop&w=1200&q=80') no-repeat center center/cover;
+            color: white;
+            text-align: center;
+            padding: 140px 20px;
+        }
+
+        header h1 {
+            font-size: 3rem;
+            margin-bottom: 15px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.6);
+        }
+
+        header p {
+            font-size: 1.4rem;
+            max-width: 800px;
+            margin: 0 auto 25px auto;
+            font-style: italic;
+        }
+
+        /* --- LAYOUT E SEÇÕES --- */
+        .container {
+            max-width: 1200px;
+            margin: 40px auto;
+            padding: 0 20px;
+        }
+
+        section {
+            background: var(--card-bg);
+            padding: 40px;
+            border-radius: 12px;
+            margin-bottom: 40px;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.05);
+        }
+
+        h2 {
+            color: var(--primary);
+            font-size: 2rem;
+            margin-bottom: 25px;
+            border-bottom: 4px solid var(--primary-light);
+            padding-bottom: 8px;
+            display: inline-block;
+        }
+
+        .grid-2 {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            align-items: center;
+        }
+
+        @media (max-width: 768px) {
+            .grid-2 { grid-template-columns: 1fr; }
+            header h1 { font-size: 2rem; }
+        }
+
+        img.img-fluid {
+            width: 100%;
+            height: 350px;
+            object-fit: cover;
+            border-radius: 12px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        /* --- INFRAESTRUTURA FAEP DESTAQUE --- */
+        .faep-section {
+            background: linear-gradient(135deg, #e8f5e9 0%, #c8e6c9 100%);
+            border-left: 8px solid var(--primary);
+        }
+
+        .badge-faep {
+            background: var(--primary);
+            color: white;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            display: inline-block;
+            margin-bottom: 15px;
+        }
+
+        /* --- ELEMENTOS DE INTERFACE (BOTÕES) --- */
+        .btn-custom {
+            background-color: var(--primary);
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            font-size: 1.1rem;
+            font-weight: bold;
+            cursor: pointer;
+            border-radius: 8px;
+            transition: all 0.3s;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+
+        .btn-custom:hover {
+            background-color: #0d3c11;
+            transform: translateY(-2px);
+        }
+
+        /* --- SISTEMA DE QUIZ --- */
+        .quiz-option {
+            background: #f8f9fa;
+            border: 2px solid #e2e8f0;
+            border-radius: 8px;
+            padding: 15px;
+            margin: 12px 0;
+            cursor: pointer;
+            font-size: 1.05rem;
+            transition: 0.2s;
+            text-align: left;
+            width: 100%;
+        }
+
+        .quiz-option:hover {
+            background: #edf2f7;
+            border-color: var(--primary-light);
+        }
+
+        /* --- NOVO JOGO: SIMULADOR DE FAZENDA --- */
+        .game-panel {
+            background: #2c3e50;
+            color: white;
+            padding: 30px;
+            border-radius: 12px;
+            text-align: center;
+        }
+
+        .game-stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 15px;
+            margin-bottom: 25px;
+        }
+
+        .stat-card {
+            background: rgba(255,255,255,0.1);
+            padding: 15px;
+            border-radius: 8px;
+            border: 1px solid rgba(255,255,255,0.2);
+        }
+
+        .stat-card h4 { color: #aecbfa; font-size: 0.9rem; text-transform: uppercase; }
+        .stat-card p { font-size: 1.5rem; font-weight: bold; }
+
+        .click-area {
+            background: radial-gradient(#81c784, #2e7d32);
+            height: 180px;
+            border-radius: 50%;
+            width: 180px;
+            margin: 20px auto;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            font-weight: bold;
+            font-size: 1.2rem;
+            user-select: none;
+            box-shadow: 0 10px 0 #1b5e20, 0 10px 20px rgba(0,0,0,0.4);
+            transition: 0.1s;
+        }
+
+        .click-area:active {
+            transform: translateY(8px);
+            box-shadow: 0 2px 0 #1b5e20, 0 2px 10px rgba(0,0,0,0.4);
+        }
+
+        .upgrades-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+            margin-top: 25px;
+        }
+
+        @media (max-width: 600px) { .upgrades-grid { grid-template-columns: 1fr; } }
+
+        .upgrade-btn {
+            background: #34495e;
+            color: white;
+            border: 2px solid #455a64;
+            padding: 12px;
+            border-radius: 8px;
+            cursor: pointer;
+            text-align: left;
+            transition: 0.3s;
+        }
+
+        .upgrade-btn:hover:not(:disabled) {
+            background: #415b76;
+            border-color: var(--primary-light);
+        }
+
+        .upgrade-btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
+        footer {
+            background-color: var(--primary);
+            color: white;
+            text-align: center;
+            padding: 30px;
+            margin-top: 60px;
+            font-size: 1rem;
+        }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <div class="logo">🌱 PROJETO AGRINHO 2026</div>
+        <div>
+            <a href="#sobre">Equilíbrio</a>
+            <a href="#faep">Legado FAEP</a>
+            <a href="#quiz">Super Quiz</a>
+            <a href="#jogo">Simulador</a>
+        </div>
+    </nav>
+
+    <header>
+        <h1>AGRO FORTE, FUTURO SUSTENTÁVEL</h1>
+        <p>"Produzir com inteligência, proteger com consciência, vencer com educação."</p>
+        <a href="#jogo" class="btn-custom" style="background-color: var(--accent);">Jogar Agora</a>
+    </header>
+
+    <div class="container">
+
+        <section id="sobre">
+            <div class="grid-2">
+                <div>
+                    <h2>O Equilíbrio Perfeito</h2>
+                    <p>O conceito de <strong>Agro Forte e Futuro Sustentável</strong> não isola a produção da preservação ambiental, muito pelo contrário! Ele prova que o uso de alta tecnologia no campo impulsiona a conservação.</p>
+                    <br>
+                    <p>Práticas modernas como o <strong>Manejo Integrado de Pragas (MIP)</strong>, o monitoramento de lavouras via satélite, a captação correta de água da chuva e os maquinários de baixa emissão de carbono garantem que o Paraná alimente o mundo sem esgotar o solo ou as florestas nativas.</p>
+                </div>
+                <img class="img-fluid" src="https://images.unsplash.com/photo-1463123081488-729f551ee6f0?auto=format&fit=crop&w=600&q=80" alt="Tecnologia aplicada à produção sustentável">
+            </div>
+        </section>
+
+        <section id="faep" class="faep-section">
+            <div class="grid-2">
+                <img class="img-fluid" src="https://images.unsplash.com/photo-1592417817098-8f3d6eb18865?auto=format&fit=crop&w=600&q=80" alt="Educação e Meio Ambiente">
+                <div>
+                    <span class="badge-faep">Instituição de Excelência</span>
+                    <h2>A Força Visionária da FAEP</h2>
+                    <p>Falar em sustentabilidade no Brasil sem citar o trabalho monumental da <strong>FAEP (Federação da Agricultura do Estado do Paraná)</strong> é impossível. A FAEP atua como o verdadeiro escudo e motor do produtor rural brasileiro.</p>
+                    <br>
+                    <p>Através do revolucionário <strong>Programa Agrinho</strong>, criado há décadas, a FAEP realiza o maior projeto de responsabilidade social e ambiental do estado, transformando escolas em pólos de conscientização. Ela apoia o homem do campo com cursos técnicos, defesa de direitos e fomento à inovação tecnológica.</p>
+                    <p><strong>Por que aplaudir a FAEP?</strong> Porque ela conecta as novas gerações escolares à realidade sustentável do campo, gerando orgulho, ciência e respeito ao meio ambiente!</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="quiz">
+            <h2>Super Quiz da Sustentabilidade</h2>
+            <p style="margin-bottom: 20px;">Mostre que você prestou atenção e ganhe o selo de Defensor do Agro Sustentável!</p>
+            
+            <div id="quiz-box" style="background: #fff; padding: 10px; border-radius: 8px;">
+                <h3 id="q-title" style="color: var(--text); margin-bottom: 15px;">Pergunta vai aqui</h3>
+                <div id="q-options"></div>
+                <div id="q-feedback" style="margin-top: 15px; font-weight: bold; font-size: 1.1rem;"></div>
+                <button class="btn-custom" id="q-next-btn" style="display:none; margin-top: 15px;">Avançar ➜</button>
+            </div>
+        </section>
+
+        <section id="jogo">
+            <h2>Simulador de Fazenda Sustentável FAEP</h2>
+            <p style="margin-bottom: 20px;">Clique na terra para produzir colheitas, venda sua safra, ganhe Eco-Moedas e compre atualizações inspiradas nas tecnologias da FAEP para automatizar sua fazenda!</p>
+            
+            <div class="game-panel">
+                <div class="game-stats">
+                    <div class="stat-card">
+                        <h4>Eco-Moedas ($)</h4>
+                        <p id="farm-money">0</p>
+                    </div>
+                    <div class="stat-card">
+                        <h4>Sustentabilidade</h4>
+                        <p id="farm-eco">100%</p>
+                    </div>
+                    <div class="stat-card">
+                        <h4>Produção Automática</h4>
+                        <p id="farm-auto">0/s</p>
+                    </div>
+                </div>
+
+                <div class="click-area" id="farm-clicker">
+                    🌾<br>COLHER!
+                </div>
+                <p style="margin-top: 10px; color: #a5d6a7;">Clique acima para cultivar manualmente (+1 Eco-Moeda)</p>
+
+                <h3 style="margin: 30px 0 15px 0; text-align: left; border-bottom: 1px solid rgba(255,255,255,0.2); padding-bottom: 5px;">Investimentos de Tecnologia & Apoio da FAEP</h3>
+                
+                <div class="upgrades-grid">
+                    <button class="upgrade-btn" id="up-1" onclick="buyUpgrade(1)">
+                        <strong>🌱 Curso do SENAR/FAEP</strong><br>
+                        Ensina manejo ideal. +1 moeda/seg.<br>
+                        <span style="color:#ffd54f;">Custo: 50 Eco-Moedas</span>
+                    </button>
+                    <button class="upgrade-btn" id="up-2" onclick="buyUpgrade(2)">
+                        <strong>💧 Irrigação Gota-a-Gota</strong><br>
+                        Economia gigante de água. +5 moedas/seg.<br>
+                        <span style="color:#ffd54f;">Custo: 250 Eco-Moedas</span>
+                    </button>
+                    <button class="upgrade-btn" id="up-3" onclick="buyUpgrade(3)">
+                        <strong>🛰️ Drone de Monitoramento</strong><br>
+                        Mapeamento inteligente. +20 moedas/seg.<br>
+                        <span style="color:#ffd54f;">Custo: 1000 Eco-Moedas</span>
+                    </button>
+                    <button class="upgrade-btn" id="up-4" onclick="buyUpgrade(4)">
+                        <strong>☀️ Painéis Solares no Campo</strong><br>
+                        Energia 100% limpa. +75 moedas/seg.<br>
+                        <span style="color:#ffd54f;">Custo: 4000 Eco-Moedas</span>
+                    </button>
+                </div>
+            </div>
+        </section>
+
+    </div>
+
+    <footer>
+        <p>© 2026 Portal Agrinho & Sustentabilidade. Desenvolvido para espalhar as boas práticas do campo e o brilhante legado da FAEP.</p>
+    </footer>
+
+    <script>
+        /* ================= CODIGO DO SUPER QUIZ ================= */
+        const quizQuestions = [
+            {
+                q: "Qual é o principal objetivo do equilíbrio entre produção e meio ambiente?",
+                options: ["Garantir a segurança alimentar sem destruir os recursos naturais para o futuro.", "Aumentar o desmatamento para expandir plantações rápidas.", "Abandonar o uso de tecnologias e retornar ao cultivo rudimentar.", "Produzir alimentos apenas para consumo próprio das fazendas."],
+                correct: 0
+            },
+            {
+                q: "O Programa Agrinho, idealizado pela FAEP, atua principalmente em quais pilares?",
+                options: ["Venda de sementes e maquinários pesados internacionais.", "Educação, cidadania e conscientização ecológica nas escolas.", "Cobrança de impostos e fiscalização de estradas.", "Apenas distribuição de prêmios financeiros sem fins pedagógicos."],
+                correct: 1
+            },
+            {
+                q: "O Plantio Direto contribui para a sustentabilidade porque:",
+                options: ["Exibe a terra ao sol forte para secar pragas.", "Evita a erosão do solo mantendo a palhada e matéria orgânica.", "Exige o dobro de tratores rodando e poluindo.", "Substitui completamente a necessidade de água."],
+                correct: 2
+            },
+            {
+                q: "Qual dessas opções reflete o papel institucional da FAEP?",
+                options: ["Um órgão internacional voltado ao turismo urbano.", "Uma federação extraordinária que fortalece, capacita e protege o produtor rural.", "Uma empresa de software focada em jogos eletrônicos.", "Um banco comercial tradicional."],
+                correct: 1
+            }
+        ];
+
+        let currentQ = 0;
+        let quizScore = 0;
+
+        function displayQuestion() {
+            const title = document.getElementById("q-title");
+            const optionsDiv = document.getElementById("q-options");
+            const feedback = document.getElementById("q-feedback");
+            const nextBtn = document.getElementById("q-next-btn");
+
+            feedback.innerText = "";
+            nextBtn.style.display = "none";
+            optionsDiv.innerHTML = "";
+
+            if(currentQ < quizQuestions.length) {
+                let data = quizQuestions[currentQ];
+                title.innerText = `${currentQ + 1}. ${data.q}`;
+
+                data.options.forEach((opt, idx) => {
+                    const btn = document.createElement("button");
+                    btn.classList.add("quiz-option");
+                    btn.innerText = opt;
+                    btn.onclick = () => evaluateAnswer(idx);
+                    optionsDiv.appendChild(btn);
+                });
+            } else {
+                title.innerText = "🎉 Quiz Concluído!";
+                optionsDiv.innerHTML = `<p style='font-size:1.2rem; margin:15px 0;'>Você acertou <strong>${quizScore} de ${quizQuestions.length}</strong> questões!</p>`;
+                if(quizScore === quizQuestions.length) {
+                    optionsDiv.innerHTML += `<p style='color:green; font-weight:bold;'>Selo Ouro: Especialista em Sustentabilidade FAEP! 🥇</p>`;
+                } else {
+                    optionsDiv.innerHTML += `<p style='color:var(--accent); font-weight:bold;'>Muito bom! Que tal rever os textos da FAEP e tentar o gabarito? 🎯</p>`;
+                }
+            }
+        }
+
+        function evaluateAnswer(selected) {
+            const feedback = document.getElementById("q-feedback");
+            const nextBtn = document.getElementById("q-next-btn");
+            const data = quizQuestions[currentQ];
+            const allButtons = document.querySelectorAll(".quiz-option");
+
+            allButtons.forEach(b => b.disabled = true);
+
+            if(selected === data.correct) {
+                quizScore++;
+                feedback.innerText = "Excelente! Resposta certa! 🌳✨";
+                feedback.style.color = "green";
+            } else {
+                feedback.innerText = "Ops! Resposta errada. Mas não desanime, o aprendizado faz parte!";
+                feedback.style.color = "red";
+            }
+            nextBtn.style.display = "inline-block";
+        }
+
+        document.getElementById("q-next-btn").onclick = () => {
+            currentQ++;
+            displayQuestion();
+        };
+
+        displayQuestion();
+
+
+        /* ================= CODIGO DO JOGO SIMULADOR ================= */
+        let money = 0;
+        let autoIncome = 0;
+        let ecoHealth = 100;
+
+        const upgrades = {
+            1: { cost: 50, power: 1, bought: 0 },
+            2: { cost: 250, power: 5, bought: 0 },
+            3: { cost: 1000, power: 20, bought: 0 },
+            4: { cost: 4000, power: 75, bought: 0 }
+        };
+
+        document.getElementById("farm-clicker").onclick = () => {
+            money += 1;
+            updateUI();
+        };
+
+        function buyUpgrade(id) {
+            let up = upgrades[id];
+            if (money >= up.cost) {
+                money -= up.cost;
+                autoIncome += up.power;
+                up.bought++;
+                up.cost = Math.floor(up.cost * 1.35); // Aumenta o custo gradativamente
+                
+                // Melhora o nível de sustentabilidade da fazenda de forma lúdica
+                ecoHealth = Math.min(100, ecoHealth + 2); 
+
+                // Atualiza o texto do botão comprado
+                updateButtonText(id);
+                updateUI();
+            }
+        }
+
+        function updateButtonText(id) {
+            const btn = document.getElementById(`up-${id}`);
+            let up = upgrades[id];
+            if(id === 1) btn.innerHTML = `<strong>🌱 Curso do SENAR/FAEP (Qtd: ${up.bought})</strong><br>Ensina manejo ideal. +1 moeda/seg.<br><span style="color:#ffd54f;">Custo: ${up.cost} Eco-Moedas</span>`;
+            if(id === 2) btn.innerHTML = `<strong>💧 Irrigação Gota-a-Gota (Qtd: ${up.bought})</strong><br>Economia gigante de água. +5 moedas/seg.<br><span style="color:#ffd54f;">Custo: ${up.cost} Eco-Moedas</span>`;
+            if(id === 3) btn.innerHTML = `<strong>🛰️ Drone de Monitoramento (Qtd: ${up.bought})</strong><br>Mapeamento inteligente. +20 moedas/seg.<br><span style="color:#ffd54f;">Custo: ${up.cost} Eco-Moedas</span>`;
+            if(id === 4) btn.innerHTML = `<strong>☀️ Painéis Solares (Qtd: ${up.bought})</strong><br>Energia 100% limpa. +75 moedas/seg.<br><span style="color:#ffd54f;">Custo: ${up.cost} Eco-Moedas</span>`;
+        }
+
+        function updateUI() {
+            document.getElementById("farm-money").innerText = money;
+            document.getElementById("farm-auto").innerText = autoIncome + "/s";
+            document.getElementById("farm-eco").innerText = ecoHealth + "%";
+
+            // Ativa ou desativa os botões baseado no dinheiro disponível
+            for (let id in upgrades) {
+                const btn = document.getElementById(`up-${id}`);
+                btn.disabled = (money < upgrades[id].cost);
+            }
+        }
+
+        // Loop de Automação (Executa a cada 1 segundo)
+        setInterval(() => {
+            money += autoIncome;
+            updateUI();
+        }, 1000);
+
+        // Inicializa a interface do jogo
+        updateUI();
+    </script>
+</body>
+</html>
